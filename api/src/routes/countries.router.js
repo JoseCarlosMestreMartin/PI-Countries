@@ -1,13 +1,13 @@
 const { Router } = require("express");
 
 const {
-  handlerGetCountries,
+  handlerGetCountriesByNameByQuery,
   handlerGetCountryByIdByParams,
-} = require("../handlers/handler.js");
+} = require("../handlers/handlersCountries.js");
 
 const router = Router();
 
-router.get("/", handlerGetCountries);
+router.get("/", handlerGetCountriesByNameByQuery);
 router.get("/:idPais", handlerGetCountryByIdByParams);
 
 module.exports = router;
