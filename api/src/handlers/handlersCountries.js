@@ -1,3 +1,4 @@
+const {getCountriesFromDB} = require("../controllers/controllerCountries")
 const handlerGetCountriesByNameByQuery = async (req, res, next) => {
     const name = req.query.name;
     if (name) {
@@ -8,6 +9,7 @@ const handlerGetCountriesByNameByQuery = async (req, res, next) => {
       return res.send("📍 GET | /countries/ query.name atravez de handler");
     } else {
       //Obtiene un arreglo de objetos, donde cada objeto es un país con toda su información.
+      getCountriesFromDB();
       return res.send("📍 GET | /countries All  atravez de handler");
     }
   };
