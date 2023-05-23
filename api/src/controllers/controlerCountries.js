@@ -1,7 +1,9 @@
 const axios = require("axios");
 const { Activity, Country } = require("../db");
+const { Op } = require("sequelize");
 
 const getCountriesAll = async () => {
+  console.log("entro en getCountriesAll");
   let matCountries = await Country.findAll();
 
   if (matCountries && matCountries.length > 0) {
@@ -10,6 +12,7 @@ const getCountriesAll = async () => {
     ////
     let aux = (await axios.get("https://restcountries.com/v3/all")).data.map(
       (e) => {
+        console.log("dentro del map");
         let aux = {
           id: e.cca3,
           name: e.name.common,
@@ -28,12 +31,24 @@ const getCountriesAll = async () => {
       }
     );
     //cargar en la db
+    console.log("posta 2");
     matCountries = await Country.bulkCreate(aux);
 
     ////
+    return matCountries;
   }
-
-  return matCountries;
 };
 
-module.export = {getCountriesAll,};
+// const getCountriesByName = async (name) => {
+//   const aux = await Country.findAll({
+//     where: {
+//       name: {
+//         [Op.iLike]: "%" + name + "%",
+//       },
+//     },
+//   });
+
+//   return aux;
+// };
+
+module.exports = { getCountriesAll };
