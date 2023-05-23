@@ -3,16 +3,13 @@ const { Activity, Country } = require("../db");
 const { Op } = require("sequelize");
 
 const getCountriesAll = async () => {
-  console.log("entro en getCountriesAll");
   let matCountries = await Country.findAll();
 
   if (matCountries && matCountries.length > 0) {
     return matCountries;
   } else {
-    ////
     let aux = (await axios.get("https://restcountries.com/v3/all")).data.map(
       (e) => {
-        console.log("dentro del map");
         let aux = {
           id: e.cca3,
           name: e.name.common,
@@ -31,24 +28,28 @@ const getCountriesAll = async () => {
       }
     );
     //cargar en la db
-    console.log("posta 2");
     matCountries = await Country.bulkCreate(aux);
-
-    ////
     return matCountries;
   }
 };
 
-// const getCountriesByName = async (name) => {
-//   const aux = await Country.findAll({
-//     where: {
-//       name: {
-//         [Op.iLike]: "%" + name + "%",
-//       },
-//     },
-//   });
+const getCountriesByName = async (name) => {
+  const aux = await Country.findAll({
+    where: {
+      name: {
+        [Op.iLike]: "%" + name + "%",
+      },
+    },
+  });
 
-//   return aux;
-// };
+  return aux;
+};
 
-module.exports = { getCountriesAll };
+const getCountryByIdByParams = async (id) => {
+  const auxObj = await Country.findByPk(id.toUpperCase());
+  console.log("auxObj");
+  console.log(auxObj);
+  return auxObj;
+};
+
+module.exports = { getCountriesAll, getCountriesByName, getCountryByIdByParams };
