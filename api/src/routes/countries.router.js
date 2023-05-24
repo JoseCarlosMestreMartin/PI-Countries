@@ -8,6 +8,6 @@ const {
 const router = Router();
 
 router.get("/", handlerGetCountriesByNameByQuery);
-router.get("/:idPais", handlerGetCountryByIdByParams);
+router.get("/:id", handlerGetCountryByIdByParams);
 
 module.exports = router;
