@@ -4,7 +4,7 @@ const {
   getCountriesAll,
   getCountriesByName,
   getCountryByIdByParams,
-} = require("../controllers/controlerCountries");
+} = require("../controllers/controllerCountries");
 
 const handlerGetCountriesByNameByQuery = async (req, res, next) => {
   try {
