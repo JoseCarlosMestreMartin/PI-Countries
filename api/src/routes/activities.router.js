@@ -10,5 +10,7 @@ const router = Router();
 
 router.post("/", handlerPostActivity);
 router.get("/", handlerGetActivities);
+router.put("/id",handlerChangeActivity);
+router.delete("/id",handleDeleteActivity);
 
 module.exports = router;
