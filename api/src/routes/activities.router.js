@@ -8,12 +8,11 @@ const {
   handlerDeleteActivity,
 } = require("../handlers/handlersActivities.js");
 
+const {validateActivity} = require("../middlewares/index");
 const router = Router();
 
-router.post("/", handlerPostActivity);
+router.post("/",validateActivity, handlerPostActivity);
 router.get("/", handlerGetActivities);
-
-
 router.put("/:id", handlerPutActivity);
 router.delete("/:id", handlerDeleteActivity)
 
