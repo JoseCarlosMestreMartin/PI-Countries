@@ -11,8 +11,8 @@ const handlerGetActivities = async (req, res, next) => {
 
 const handlerPostActivity = async (req, res, next) => {
   try {
-    const { name, difficulty, duration, season, countries } = req.body;
-    const auxActivity = createActivity(name, difficulty, duration, season, countries);
+    const { name, difficulty, duration, season, idsCountries } = req.body;
+    const auxActivity = await createActivity(name, difficulty, duration, season, idsCountries);
     console.log("auxActivity");
     console.log(auxActivity);
     return res.status(200).json({activity: "Actividad creada"});
