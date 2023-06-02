@@ -3,7 +3,10 @@ const { Activity, Country } = require("../db");
 const { Op } = require("sequelize");
 
 const getCountriesAll = async () => {
-  let matCountries = await Country.findAll();
+  let matCountries = await Country.findAll({
+    include: [{ model: Activity, through: { attributes: [] } }],
+    order: [["name", "ASC"]],
+  });
 
   if (matCountries && matCountries.length > 0) {
     return matCountries;
@@ -28,7 +31,11 @@ const getCountriesAll = async () => {
       }
     );
     //cargar en la db
-    matCountries = await Country.bulkCreate(aux);
+    await Country.bulkCreate(aux);
+    matCountries = await Country.findAll({
+      include: [{ model: Activity, through: { attributes: [] } }],
+      order: [["name", "ASC"]],
+    });
     return matCountries;
   }
 };
@@ -40,16 +47,32 @@ const getCountriesByName = async (name) => {
         [Op.iLike]: "%" + name + "%",
       },
     },
+    include: {
+      model: Activity,
+      attributes: ["name", "difficulty", "duration", "season"],
+      through: { attributes: [] },
+    },
+    order: [["name", "ASC"]],
   });
 
   return aux;
 };
 
 const getCountryByIdByParams = async (id) => {
-  const auxObj = await Country.findByPk(id.toUpperCase());
+  const auxObj = await Country.findByPk(id.toUpperCase(), {
+    include: {
+      model: Activity,
+      attributes: ["name", "difficulty", "duration", "season"],
+      through: { attributes: [] },
+    },
+  });
   console.log("auxObj");
   console.log(auxObj);
   return auxObj;
 };
 
-module.exports = { getCountriesAll, getCountriesByName, getCountryByIdByParams };
+module.exports = {
+  getCountriesAll,
+  getCountriesByName,
+  getCountryByIdByParams,
+};
