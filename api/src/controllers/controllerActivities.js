@@ -1,6 +1,12 @@
 const { Activity, Country } = require("../db");
-const { Op } = require("sequelize");
-
+// const { Op } = require("sequelize");
+const getAllActivities = async ()=>{
+  const activitiesAll = await Activity.findAll({
+    include: [{model: Country, through: {attributes: [] }}],
+    order: [["id", "ASC"]],
+  });
+  return activitiesAll;  
+};
 const createActivity = async (
   name,
   difficulty,
@@ -16,7 +22,7 @@ const createActivity = async (
   });
 
   // idsCountries.map(async (id) => {
-  //   const idCountry = id.toUpperCase(); 
+  //   const idCountry = id.toUpperCase();
   //   const country = await Country.findOne({
   //     where: {
   //       id: idCountry,
@@ -30,7 +36,21 @@ const createActivity = async (
   });
   return auxActivity;
 };
+const updateActivity = async (activityToUpdate, idActivity) => {
+  await Activity.update(activityToUpdate, { where: { id: idActivity } });
+  return ({ changed: true });
+};
 
+const deleteActivity = async (id)=>{
+  console.log("dentro del controler de delete");
+  console.log("id : ");
+  console.log(id);
+  await Activity.destroy({where: {id: id}});
+  return({delete:true});
+};
 module.exports = {
   createActivity,
+  updateActivity,
+  getAllActivities,
+  deleteActivity,
 };

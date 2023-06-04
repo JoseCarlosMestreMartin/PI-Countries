@@ -13,8 +13,8 @@ const router = Router();
 
 router.post("/",validateActivity, handlerPostActivity);
 router.get("/", handlerGetActivities);
-router.put("/:id", handlerPutActivity);
-router.delete("/:id", handlerDeleteActivity)
+router.put("/:id",validateActivity, handlerPutActivity);
+router.delete("/", handlerDeleteActivity)
 
 
 module.exports = router;
