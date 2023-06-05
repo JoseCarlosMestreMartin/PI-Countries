@@ -17,6 +17,7 @@ import {
     optionsContinents:[],
     optionsActivities:[],
     orderCountriesBy:["ascendingByCountry"],
+    filterCountriesBy: {name: "All", continent:"All", activities:"All"},
     limitByPage: 10,
     currentPage: 1,
     maxCantOfPage: 0,

@@ -28,23 +28,38 @@ const optionsContinents = (countries) => {
   return continents;
 };
 
-const filterCountries = ({ countries, continent, activity }) => {
+const filterCountries = ({ countries, continent, activity, name }) => {
   let filterTotal = countries;
-
-  if (!continent && !activity) {
-    filterTotal = countries;
-  } else if (continent && !activity) {
-    filterTotal = countries?.filter((c) => c.continent === continent);
-  } else if (activity && !continent) {
-    filterTotal = countries?.filter((c) =>
-      c.Activities.map((a) => a.name).includes(activity)
-    );
-  } else if (continent && activity) {
-    const aux = countries?.filter((c) => c.continent === continent);
-    filterTotal = aux.filter((c) =>
+  ///
+  if (continent && continent != "All") {
+    filterTotal = filterTotal.filter((c) => c.continent === continent);
+  }
+  if (activity && activity!="All") {
+    filterTotal = filterTotal.filter((c) =>
       c.Activities.map((a) => a.name).includes(activity)
     );
   }
+  if (name && name!="All") {
+    filterTotal = filterTotal.filter((c) =>
+      c.name.includes(name)
+    );
+  }
+
+  ///
+//   if (!continent && !activity) {
+//     filterTotal = countries;
+//   } else if (continent && !activity) {
+//     filterTotal = countries?.filter((c) => c.continent === continent);
+//   } else if (activity && !continent) {
+//     filterTotal = countries?.filter((c) =>
+//       c.Activities.map((a) => a.name).includes(activity)
+//     );
+//   } else if (continent && activity) {
+//     const aux = countries?.filter((c) => c.continent === continent);
+//     filterTotal = aux.filter((c) =>
+//       c.Activities.map((a) => a.name).includes(activity)
+//     );
+//   }
 
   return filterTotal;
 };
@@ -69,16 +84,16 @@ const sortCountries = ({ countries, criteria }) => {
 
   switch (criteria) {
     case "ascendingByCountry":
-        arrCountries.sort(ascendent("name"));
+      arrCountries.sort(ascendent("name"));
       break;
     case "descendingByCountry":
-        arrCountries.sort(descendent("name"));
+      arrCountries.sort(descendent("name"));
       break;
     case "ascendingByPopulation":
-        arrCountries.sort(ascendent("population"));
+      arrCountries.sort(ascendent("population"));
       break;
     case "descendingByPopulation":
-        arrCountries.sort(descendent("population"));
+      arrCountries.sort(descendent("population"));
       break;
 
     default:
