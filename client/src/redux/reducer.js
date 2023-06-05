@@ -9,16 +9,18 @@ import {
   } from "./types";
   
   const intialState = {
-    allcountries: [],
+    countriesAll: [],
+    countriesFilteredAndOrdered: [],
+    countriesToView: [],//según la pagina
     activities: [],
-    countries: [],
-    details: [],
-    // flagFilterByName: false,
-    // filterByName: "",
-    // flagFilterByTemperament: false,
-    // textFilterByTemperament: "",
-    // flagFilterIsCreated: false,
-    // filterIsCreated: false,
+    countryDetails: {},
+    optionsContinents:[],
+    optionsActivities:[],
+    orderCountriesBy:["ascendingByCountry"],
+    limitByPage: 10,
+    currentPage: 1,
+    maxCantOfPage: 0,
+    pages: [],
   };
   
   export default function rootReducer(state = intialState, action) {
