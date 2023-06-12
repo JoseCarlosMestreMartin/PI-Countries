@@ -1,0 +1,11 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100%); /* Resta el doble del espesor del borde */
+    background: rgba(0,255, 0, 0.25);
+    border: 0.3rem solid green;
+    border-radius: 0.6rem;
+    padding: 10px;
+    box-sizing: border-box; /* Agrega la propiedad box-sizing */
+  }

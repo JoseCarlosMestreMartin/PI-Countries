@@ -1,0 +1,33 @@
+/* .navBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: rgba(255, 0, 0, 0.25);
+    border: 1px solid red;
+    padding: 10px;
+    box-shadow: inset 0 0 0 0.1rem red;
+  } */
+
+  /* .navBar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background: rgba(255, 0, 0, 0.25);
+    border: 1px solid red;
+    border-radius: 5px;
+    padding: 10px;
+    
+  } */
+  .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: calc(100%); /* Resta el doble del espesor del borde */
+    background: rgba(255, 0, 0, 0.25);
+    border: 0.3rem solid red;
+    border-radius: 0.6rem;
+    padding: 10px;
+    box-sizing: border-box; /* Agrega la propiedad box-sizing */
+  }
