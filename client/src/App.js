@@ -1,19 +1,21 @@
 import "./App.css";
-import React from "react";
-import { Routes, Route } from "react-router-dom";
-import LandingPage from './Components/LandingPage/LandingPage';
-// import Home from './Components/Home/Home';
-// import Detail from './Components/Detail/Detail';
-// import FormCreate from './Components/FormCreate/FormCreate';
+import { Route, Routes, useLocation } from "react-router-dom";
+import Landing from "./Components/Landing/Landing";
+import Home from "./Components/Home/Home";
+import Detail from "./Components/Detail/Detail";
+import Form from "./Components/Form/Form";
+import NavBar from "./Components/NavBar/NavBar";
+
 function App() {
+const location = useLocation().pathname;
   return (
     <div className="App">
-      {/* <h1>Henry Countries</h1> */}
+      {location !== "/" && <NavBar/>}
       <Routes>
-        <Route path="/" element={<LandingPage />} />
-        {/* <Route path="/Home" element={<Home />} />
-        <Route path="/Detail/:id" element={<Detail />} />
-        <Route path="/Form" element={<FormCreate />} /> */}
+        <Route exact path="/" element={<Landing />} />
+        <Route exact path="/home" element={<Home />} />
+        <Route exact path="/detail/:IdCountry" element={<Detail />} />
+        <Route exact path="/create" element={<Form />} />
       </Routes>
     </div>
   );
