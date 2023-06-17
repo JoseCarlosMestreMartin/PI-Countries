@@ -1,0 +1,26 @@
+.contain {
+    width: 320px;
+    height: 320px;
+    padding: 25px;
+    background: #bfed91;
+    border: 0.3rem solid rgba(18, 51, 1, 0.967);
+  
+    box-shadow: 0 5px 5px rgb(0, 0, 0);
+  
+    /* backdrop-filter: blur(50px); */
+    transition: all 0.25s;
+    border-radius: 5%;
+
+}
+
+.contain:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 15px rgb(0, 0, 0);
+}
+
+.img{
+    border-radius: 5%;
+    border: hsl(240, 9%, 98%) 8px solid;
+    
+}
+

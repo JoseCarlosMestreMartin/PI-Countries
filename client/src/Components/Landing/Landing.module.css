@@ -1,5 +1,6 @@
 .container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     width: calc(100%); /* Resta el doble del espesor del borde */
@@ -13,4 +14,21 @@
     background-repeat: repeat;
     background-size:auto;
     background-position: center;
+    text-shadow: 0 0 5px rgb(255, 255, 255);
+  }
+
+.button{
+  align-items: center;
+    padding: 1.5rem 3rem;
+    border: 0.5rem rgb(112, 45, 45) solid;
+    outline: none;
+    color: rgb(0, 0, 0);
+    background: rgb(255, 255, 0, 0.5);
+    cursor: pointer;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 0 15px rgb(2, 202, 247, 1); /* Agrega una sombra al botón */
+}
+.button:hover {
+  background: rgba(255, 255, 0, 0.7);
   }

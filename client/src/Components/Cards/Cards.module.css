@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    background: rgba(251, 135, 2, 0.967);
+    border: 0.3rem solid rgba(112, 62, 5, 0.967);
+    border-radius: 0.6rem;
+    padding: 10px;
+    box-sizing: border-box; /* Agrega la propiedad box-sizing */
+    flex-wrap: wrap;
+  }
