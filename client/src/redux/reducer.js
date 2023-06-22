@@ -1,6 +1,7 @@
 import {
     GET_ALL_COUNTRIES,
     GET_ALL_ACTIVITIES,
+    GET_COUNTRIES_TO_VIEW,
     GET_DETAIL,
     CLEAR_DETAIL,
     FILTER_BY_NAME,
@@ -10,7 +11,7 @@ import {
   
   const intialState = {
     countriesAll: [],
-    countriesFilteredAndOrdered: [],
+    countriesFilteredAndOrdered: [],//se filtra countriesAll y se ordena a si misma
     countriesToView: [],//según la pagina
     activities: [],
     countryDetails: {},
@@ -23,6 +24,7 @@ import {
     maxCantOfPage: 0,
     pages: [],
   };
+  import { getCountriesToView } from "./utils";
   
   export default function rootReducer(state = intialState, action) {
     switch (action.type) {
@@ -37,6 +39,8 @@ import {
           ...state,
           activities: action.payload,
         };
+      case GET_COUNTRIES_TO_VIEW:
+         return { ...state, countriesToView: getCountriesToView(payload) };
       case GET_DETAIL:
         return {
           ...state,
